@@ -1,11 +1,43 @@
 <DOCTYPE html>
   <html>
-  <head>
-    <meta charset=utf-8" />
-    <title>サモランNW 武器チェッカー</title>
-    <script type="text/javascript" src="js/common.js"></script>
-    <link rel="stylesheet" href="css/common.css" type="text/css" />
-  </head>
+    <head>
+      <meta charset=utf-8" />
+      <title>サモランNW 武器チェッカー</title>
+      <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+      <link rel="stylesheet" href="css/common.css" type="text/css" />
+      <script type="text/javascript">
+        jQuery(function($){
+            //ページを読み込んだら、チェックボックスにクッキーの値を反映する
+            if(Cookies.get('ccheck_value')){
+            
+                var load_values = Cookies.get('ccheck_value').split(",");
+            
+                for(var i = 0; i < load_values.length; ++i){
+                    load_values[i] = decodeURIComponent(load_values[i]);
+                    console.log(load_values[i]);
+                }
+                
+                $("input[type=checkbox][name=image]").each(function(){
+                    this.checked = $.inArray(this.value, load_values) != -1;
+                });
+            }
+  
+            //チェックを変えたらクッキーを保存するイベントを登録する
+            $("input[type=checkbox][name=image]").change(function(){
+            
+                var save_values = [];
+                
+                $("input[type=checkbox][name=image]").each(function(){
+                    this.checked && save_values.push(encodeURIComponent(this.value));
+                });
+                console.log(save_values)
+  
+                Cookies.set('ccheck_value', save_values.join(","));
+            });
+        });
+      </script>
+    </head>
   <body>
     <h2>サモランNW 武器チェッカー </h2>
     <ul id="weapons" class="clearfix">
