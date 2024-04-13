@@ -1,13 +1,15 @@
 * { margin:0;}
 body { background:url(i/bg.jpg); }
-h2 { font-weight:100; text-shadow:#ffffff 1px 1px 0px; text-align:center; padding:20px; font-size:32px;  color:#555555; border-bottom:1px dashed #ccc; margin-bottom:30px;  font-family: Georgia, "Times New Roman", Times, serif ;  }
+h2 { font-weight:100; text-shadow:#ffffff 1px 1px 0px; text-align:center; padding:20px; font-size:32px;  color:#555555; border-bottom:1px dashed #ccc; margin-bottom:20px;  font-family: Georgia, "Times New Roman", Times, serif ;  }
 
 #weapons {
+    margin: 0 auto;
     list-style:none;
+    padding: 0 0 30 10;
+    border-bottom:1px dashed #ccc;
 }
 
 #weapons li {
-    float:left;
     display:block;
     border:1px solid #ffffff;
     -moz-border-radius:4px;
@@ -16,8 +18,9 @@ h2 { font-weight:100; text-shadow:#ffffff 1px 1px 0px; text-align:center; paddin
     -webkit-box-shadow:1px 1px 6px #ddd;
     -moz-box-shadow:1px 1px 6px #ddd;
     box-shadow:1px 1px 6px #ddd;
-    margin: 5px 5;
-    padding:0;
+    margin: 5px 5 5 5;
+    display: inline-block;
+
 }
 
 input[type="checkbox"]:checked + li {
@@ -38,9 +41,14 @@ input[type="checkbox"] {
 input[type="checkbox"] + li label img {
     opacity:0.5;
     filter:grayscale(100)
-  }
-  input[type="checkbox"]:checked + li label img {
+}
+
+input[type="checkbox"]:checked + li label img {
     opacity:1;
     filter:grayscale(0)
 }
 
+#counter {
+    text-align: center;
+    font-size: 30px;
+}
