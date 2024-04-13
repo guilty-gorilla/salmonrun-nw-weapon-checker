@@ -19,12 +19,28 @@
                 $("input[type=checkbox][name=image]").each(function(){
                     this.checked = $.inArray(this.value, load_values) != -1;
                 });
+
+                let chk = Cookies.get('chk_value');
+                let cnt = Cookies.get('cnt_value');
+                let elem = document.getElementById("counter");
+                elem.innerHTML = "<h2>" + chk + " / " + cnt + "</h2>";
+            }else{
+
+              let cnt = 0;
+              let elem = document.getElementById("counter");
+
+              $("input[type=checkbox][name=image]").each(function(){
+                cnt = cnt + 1;
+              });
+
+              elem.innerHTML = "<h2>" + 0 + " / " + cnt + "</h2>";
             }
   
             //チェックを変えたらイベント発火
             $("input[type=checkbox][name=image]").change(function(){
                 let save_values = [];
                 let chk = 0;
+                let cnt = 0;
   
                 $("input[type=checkbox][name=image]").each(function(){
                   if(this.checked){
@@ -32,11 +48,16 @@
   
                   }
                     this.checked && save_values.push(encodeURIComponent(this.value));
+                    cnt = cnt + 1;
                 });
   
                 // TODO ここにHTML更新の処理追加　chkにチェックされた数が入っている
+                let elem = document.getElementById("counter");
+                elem.innerHTML = "<h2>" + chk + " / " + cnt + "</h2>";
   
                 Cookies.set('ccheck_value', save_values.join(","), { expires: 7 });
+                Cookies.set('chk_value', chk, { expires: 7 });
+                Cookies.set('cnt_value', cnt, { expires: 7 });
             });
         });
       </script>
@@ -301,6 +322,6 @@
         <label for="12_99"><img src="img/12_99.png" /></label>
       </li>
     </ul>
-    <div id="counter"><h2>10/53</h2></div>
+    <div id="counter"></div>
   </body>
 </html>
