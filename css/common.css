@@ -17,8 +17,12 @@ h2 { font-weight:100; text-shadow:#ffffff 1px 1px 0px; text-align:center; paddin
     -webkit-box-shadow:1px 1px 6px #ddd;
     -moz-box-shadow:1px 1px 6px #ddd;
     box-shadow:1px 1px 6px #ddd;
-    margin: 4px 4;
+    margin: 3px 3;
     padding:0;
+}
+
+input[type="checkbox"]:checked + li {
+    background-color: #e1eec8;
 }
 
 #weapons img {
@@ -39,4 +43,5 @@ input[type="checkbox"] + li label img {
   input[type="checkbox"]:checked + li label img {
     opacity:1;
     filter:grayscale(0)
-  }
+}
+
