@@ -10,14 +10,12 @@
         jQuery(function($){
             //ページを読み込んだら、チェックボックスにクッキーの値を反映する
             if(Cookies.get('ccheck_value')){
-            
+  
                 var load_values = Cookies.get('ccheck_value').split(",");
-            
                 for(var i = 0; i < load_values.length; ++i){
                     load_values[i] = decodeURIComponent(load_values[i]);
-                    console.log(load_values[i]);
                 }
-                
+  
                 $("input[type=checkbox][name=image]").each(function(){
                     this.checked = $.inArray(this.value, load_values) != -1;
                 });
@@ -25,15 +23,16 @@
   
             //チェックを変えたらクッキーを保存するイベントを登録する
             $("input[type=checkbox][name=image]").change(function(){
-            
+  
                 var save_values = [];
-                
+  
                 $("input[type=checkbox][name=image]").each(function(){
                     this.checked && save_values.push(encodeURIComponent(this.value));
                 });
-                console.log(save_values)
+                let expire = new Date();
+                expire.setTime( expire.getTime() + 1000 * 3600 * 24 * 14);
   
-                Cookies.set('ccheck_value', save_values.join(","));
+                Cookies.set('ccheck_value', save_values.join(","), { expires: 7 });
             });
         });
       </script>
